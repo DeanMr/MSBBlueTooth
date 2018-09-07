@@ -15,6 +15,10 @@
 		394CE439214247AE004B3597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE438214247AE004B3597 /* main.m */; };
 		394CE443214247AE004B3597 /* MSBBlueToothTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE442214247AE004B3597 /* MSBBlueToothTests.m */; };
 		394CE44E214247AE004B3597 /* MSBBlueToothUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE44D214247AE004B3597 /* MSBBlueToothUITests.m */; };
+		394CE45D21424993004B3597 /* BLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE45C21424993004B3597 /* BLEViewController.m */; };
+		394CE46521424A33004B3597 /* MSBBlueTooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE45F21424A33004B3597 /* MSBBlueTooth.m */; };
+		394CE46621424A33004B3597 /* NSString+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE46121424A33004B3597 /* NSString+Coding.m */; };
+		394CE46721424A33004B3597 /* MSBBlueTooth+State.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE46321424A33004B3597 /* MSBBlueTooth+State.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,14 @@
 		394CE449214247AE004B3597 /* MSBBlueToothUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MSBBlueToothUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		394CE44D214247AE004B3597 /* MSBBlueToothUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSBBlueToothUITests.m; sourceTree = "<group>"; };
 		394CE44F214247AE004B3597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		394CE45B21424993004B3597 /* BLEViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEViewController.h; sourceTree = "<group>"; };
+		394CE45C21424993004B3597 /* BLEViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLEViewController.m; sourceTree = "<group>"; };
+		394CE45F21424A33004B3597 /* MSBBlueTooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSBBlueTooth.m; sourceTree = "<group>"; };
+		394CE46021424A33004B3597 /* MSBBlueTooth+State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSBBlueTooth+State.h"; sourceTree = "<group>"; };
+		394CE46121424A33004B3597 /* NSString+Coding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Coding.m"; sourceTree = "<group>"; };
+		394CE46221424A33004B3597 /* MSBBlueTooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSBBlueTooth.h; sourceTree = "<group>"; };
+		394CE46321424A33004B3597 /* MSBBlueTooth+State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSBBlueTooth+State.m"; sourceTree = "<group>"; };
+		394CE46421424A33004B3597 /* NSString+Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Coding.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +113,13 @@
 		394CE428214247AC004B3597 /* MSBBlueTooth */ = {
 			isa = PBXGroup;
 			children = (
+				394CE45E21424A33004B3597 /* BlueTooth */,
 				394CE429214247AC004B3597 /* AppDelegate.h */,
 				394CE42A214247AC004B3597 /* AppDelegate.m */,
 				394CE42C214247AC004B3597 /* ViewController.h */,
 				394CE42D214247AC004B3597 /* ViewController.m */,
+				394CE45B21424993004B3597 /* BLEViewController.h */,
+				394CE45C21424993004B3597 /* BLEViewController.m */,
 				394CE42F214247AC004B3597 /* Main.storyboard */,
 				394CE432214247AD004B3597 /* Assets.xcassets */,
 				394CE434214247AD004B3597 /* LaunchScreen.storyboard */,
@@ -130,6 +145,19 @@
 				394CE44F214247AE004B3597 /* Info.plist */,
 			);
 			path = MSBBlueToothUITests;
+			sourceTree = "<group>";
+		};
+		394CE45E21424A33004B3597 /* BlueTooth */ = {
+			isa = PBXGroup;
+			children = (
+				394CE45F21424A33004B3597 /* MSBBlueTooth.m */,
+				394CE46021424A33004B3597 /* MSBBlueTooth+State.h */,
+				394CE46121424A33004B3597 /* NSString+Coding.m */,
+				394CE46221424A33004B3597 /* MSBBlueTooth.h */,
+				394CE46321424A33004B3597 /* MSBBlueTooth+State.m */,
+				394CE46421424A33004B3597 /* NSString+Coding.h */,
+			);
+			path = BlueTooth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +227,11 @@
 				TargetAttributes = {
 					394CE425214247AC004B3597 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					394CE43D214247AE004B3597 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -262,9 +295,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				394CE45D21424993004B3597 /* BLEViewController.m in Sources */,
+				394CE46621424A33004B3597 /* NSString+Coding.m in Sources */,
 				394CE42E214247AC004B3597 /* ViewController.m in Sources */,
+				394CE46521424A33004B3597 /* MSBBlueTooth.m in Sources */,
 				394CE439214247AE004B3597 /* main.m in Sources */,
 				394CE42B214247AC004B3597 /* AppDelegate.m in Sources */,
+				394CE46721424A33004B3597 /* MSBBlueTooth+State.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
+#import "MSBBlueTooth.h"
 @interface AppDelegate ()
-
+@property (nonatomic, strong) MSBBlueTooth *bluetooth;
 @end
 
 @implementation AppDelegate
@@ -17,6 +17,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSArray *centralManagerIdentifiers =
+    launchOptions[UIApplicationLaunchOptionsBluetoothCentralsKey];
+    
+    if (centralManagerIdentifiers.count) {
+        for (NSString *identifier in centralManagerIdentifiers) {
+            NSLog(@"系统启动项目");
+            //在这里创建的蓝牙实例一定要被当前类持有，不然出了这个函数就被销毁了，蓝牙检测会出现“XPC connection invalid”
+            self.bluetooth = [[MSBBlueTooth alloc]initWithQueue:nil options:@{CBCentralManagerOptionRestoreIdentifierKey : identifier}];
+            NSLog(@"");
+        }
+    }
+    
+    
     return YES;
 }
 
