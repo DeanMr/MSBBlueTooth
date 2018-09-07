@@ -19,6 +19,7 @@
 		394CE46521424A33004B3597 /* MSBBlueTooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE45F21424A33004B3597 /* MSBBlueTooth.m */; };
 		394CE46621424A33004B3597 /* NSString+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE46121424A33004B3597 /* NSString+Coding.m */; };
 		394CE46721424A33004B3597 /* MSBBlueTooth+State.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE46321424A33004B3597 /* MSBBlueTooth+State.m */; };
+		394CE46921424D24004B3597 /* 实现流程.md in Resources */ = {isa = PBXBuildFile; fileRef = 394CE46821424D23004B3597 /* 实现流程.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		394CE46221424A33004B3597 /* MSBBlueTooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSBBlueTooth.h; sourceTree = "<group>"; };
 		394CE46321424A33004B3597 /* MSBBlueTooth+State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSBBlueTooth+State.m"; sourceTree = "<group>"; };
 		394CE46421424A33004B3597 /* NSString+Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Coding.h"; sourceTree = "<group>"; };
+		394CE46821424D23004B3597 /* 实现流程.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "实现流程.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		394CE41D214247AC004B3597 = {
 			isa = PBXGroup;
 			children = (
+				394CE46821424D23004B3597 /* 实现流程.md */,
 				394CE428214247AC004B3597 /* MSBBlueTooth */,
 				394CE441214247AE004B3597 /* MSBBlueToothTests */,
 				394CE44C214247AE004B3597 /* MSBBlueToothUITests */,
@@ -268,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				394CE46921424D24004B3597 /* 实现流程.md in Resources */,
 				394CE436214247AD004B3597 /* LaunchScreen.storyboard in Resources */,
 				394CE433214247AD004B3597 /* Assets.xcassets in Resources */,
 				394CE431214247AC004B3597 /* Main.storyboard in Resources */,
