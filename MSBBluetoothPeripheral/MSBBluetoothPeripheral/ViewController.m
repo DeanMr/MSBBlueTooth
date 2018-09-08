@@ -105,6 +105,13 @@
 
 /** 通过固定的特征发送数据到中心设备 */
 - (IBAction)didClickPost:(id)sender {
+    
+    BOOL sendSuccess = [self.peripheralManager updateValue:[self.textField.text dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.characteristic onSubscribedCentrals:nil];
+    if (sendSuccess) {
+        NSLog(@"数据发送成功");
+    }else {
+        NSLog(@"数据发送失败");
+    }
 }
 
 
