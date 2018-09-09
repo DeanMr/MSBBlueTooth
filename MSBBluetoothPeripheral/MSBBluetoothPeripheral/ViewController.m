@@ -29,6 +29,7 @@
     // 创建外设管理器，会回调peripheralManagerDidUpdateState方法
     self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
     
+    NSLog(@"初始化外设管理器");
 }
 
 /** 设备的蓝牙状态
@@ -66,6 +67,7 @@
                                                permissions:CBAttributePermissionsReadable |
                                                CBAttributePermissionsWriteable
                                                ];
+    
     // 特征添加进服务
     service.characteristics = @[characteristic];
     // 服务加入管理
