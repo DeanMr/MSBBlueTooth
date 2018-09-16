@@ -8,11 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-
+#import "MSBlueToothProtocol.h"
+//服务UUID
+#define SERVICE_UUID @"0x0AF0"
+#define WRITE_UUID_1 @"0AF6"
+#define NOTIFY_UUID_1 @"0AF7"
+#define WRITE_UUID_2 @"0AF1"
+#define NOTIFY_UUID_2 @"0AF2"
 
 @interface MSBBlueTooth : NSObject
+@property (nonatomic ,weak) id <MSBlueToothProtocol> delegate;
 @property (strong , nonatomic) NSMutableArray *peripherals;       //扫描的所有设备
 
+@property (nonatomic,strong) CBCentralManager *centerManager;   //中心管理器
+@property (strong , nonatomic) CBPeripheral * discoveredPeripheral;//周边设备
+@property (strong , nonatomic) CBCharacteristic *characteristic1;//周边设备服务特性
+@property (nonatomic ,strong) NSArray *characteristics;
 
 
 /**
@@ -30,8 +41,8 @@
 
  @param block 将有效设备回调
  */
-- (void)scanscanDiscoverToPeripherals:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block;
 
+- (void)scanscanDiscoverToPeripherals:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block message:(void (^)(NSData *value))messageBlock;
 
 /**
  连接某一台设备

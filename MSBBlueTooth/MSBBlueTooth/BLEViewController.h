@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSBBlueTooth+Operation.h"
+@interface BLEViewController : UIViewController
 
-@interface BLEViewController : UITableViewController
+@property (nonatomic, strong)MSBBlueTooth *blueTooth;
 
 @end

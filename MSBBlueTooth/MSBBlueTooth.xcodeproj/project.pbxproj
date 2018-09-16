@@ -20,6 +20,8 @@
 		394CE46621424A33004B3597 /* NSString+Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE46121424A33004B3597 /* NSString+Coding.m */; };
 		394CE46721424A33004B3597 /* MSBBlueTooth+State.m in Sources */ = {isa = PBXBuildFile; fileRef = 394CE46321424A33004B3597 /* MSBBlueTooth+State.m */; };
 		394CE46921424D24004B3597 /* 实现流程.md in Resources */ = {isa = PBXBuildFile; fileRef = 394CE46821424D23004B3597 /* 实现流程.md */; };
+		4517E88E214DF4EB0024F1DF /* MSBBlueTooth+Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4517E88B214DF4EB0024F1DF /* MSBBlueTooth+Operation.m */; };
+		4517E891214DFDB40024F1DF /* BlueCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4517E890214DFDB40024F1DF /* BlueCenterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,11 @@
 		394CE46321424A33004B3597 /* MSBBlueTooth+State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSBBlueTooth+State.m"; sourceTree = "<group>"; };
 		394CE46421424A33004B3597 /* NSString+Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Coding.h"; sourceTree = "<group>"; };
 		394CE46821424D23004B3597 /* 实现流程.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "实现流程.md"; sourceTree = "<group>"; };
+		4517E88B214DF4EB0024F1DF /* MSBBlueTooth+Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSBBlueTooth+Operation.m"; sourceTree = "<group>"; };
+		4517E88C214DF4EB0024F1DF /* MSBBlueTooth+Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSBBlueTooth+Operation.h"; sourceTree = "<group>"; };
+		4517E88D214DF4EB0024F1DF /* MSBlueToothProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSBlueToothProtocol.h; sourceTree = "<group>"; };
+		4517E88F214DFDB40024F1DF /* BlueCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueCenterViewController.h; sourceTree = "<group>"; };
+		4517E890214DFDB40024F1DF /* BlueCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCenterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +128,8 @@
 				394CE42A214247AC004B3597 /* AppDelegate.m */,
 				394CE42C214247AC004B3597 /* ViewController.h */,
 				394CE42D214247AC004B3597 /* ViewController.m */,
+				4517E88F214DFDB40024F1DF /* BlueCenterViewController.h */,
+				4517E890214DFDB40024F1DF /* BlueCenterViewController.m */,
 				394CE45B21424993004B3597 /* BLEViewController.h */,
 				394CE45C21424993004B3597 /* BLEViewController.m */,
 				394CE42F214247AC004B3597 /* Main.storyboard */,
@@ -153,6 +162,9 @@
 		394CE45E21424A33004B3597 /* BlueTooth */ = {
 			isa = PBXGroup;
 			children = (
+				4517E88C214DF4EB0024F1DF /* MSBBlueTooth+Operation.h */,
+				4517E88B214DF4EB0024F1DF /* MSBBlueTooth+Operation.m */,
+				4517E88D214DF4EB0024F1DF /* MSBlueToothProtocol.h */,
 				394CE45F21424A33004B3597 /* MSBBlueTooth.m */,
 				394CE46021424A33004B3597 /* MSBBlueTooth+State.h */,
 				394CE46121424A33004B3597 /* NSString+Coding.m */,
@@ -306,6 +318,8 @@
 				394CE439214247AE004B3597 /* main.m in Sources */,
 				394CE42B214247AC004B3597 /* AppDelegate.m in Sources */,
 				394CE46721424A33004B3597 /* MSBBlueTooth+State.m in Sources */,
+				4517E891214DFDB40024F1DF /* BlueCenterViewController.m in Sources */,
+				4517E88E214DF4EB0024F1DF /* MSBBlueTooth+Operation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

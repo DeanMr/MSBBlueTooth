@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="蓝牙中心"/>
                                 <connections>
-                                    <segue destination="IgU-eO-1Lj" kind="push" id="K9c-bc-P4a"/>
+                                    <segue destination="IgU-eO-1Lj" kind="push" id="mRM-BW-jw6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -37,9 +37,79 @@
             <point key="canvasLocation" x="1056.8" y="118.29085457271366"/>
         </scene>
         <!--View Controller-->
+        <scene sceneID="Uq0-N7-W1o">
+            <objects>
+                <viewController storyboardIdentifier="blueID" id="9Sq-uV-Sj2" customClass="BLEViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="blueID" id="7fb-9T-QOO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubB-K8-6YC">
+                                <rect key="frame" x="16" y="45" width="31" height="30"/>
+                                <state key="normal" title="断开"/>
+                                <connections>
+                                    <action selector="scan:" destination="9Sq-uV-Sj2" eventType="touchUpInside" id="vxQ-As-waa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9r-w3-VvI">
+                                <rect key="frame" x="67" y="45" width="92" height="30"/>
+                                <state key="normal" title="设备信息获取"/>
+                                <connections>
+                                    <action selector="getDeviceInfo:" destination="9Sq-uV-Sj2" eventType="touchUpInside" id="oX1-um-uHY"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eh7-cj-snY">
+                                <rect key="frame" x="16" y="258" width="343" height="389"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8a-z5-TZs">
+                                <rect key="frame" x="172" y="45" width="92" height="30"/>
+                                <state key="normal" title="获取门锁时间"/>
+                                <connections>
+                                    <action selector="getLockTime:" destination="9Sq-uV-Sj2" eventType="touchUpInside" id="77e-Ho-xeQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vw-Aj-YBu">
+                                <rect key="frame" x="16" y="99" width="125" height="30"/>
+                                <state key="normal" title="获取门锁MAC地址"/>
+                                <connections>
+                                    <action selector="getMac:" destination="9Sq-uV-Sj2" eventType="touchUpInside" id="pkI-Uo-29m"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="n8a-z5-TZs" firstAttribute="leading" secondItem="h9r-w3-VvI" secondAttribute="trailing" constant="13" id="0P0-7o-gH6"/>
+                            <constraint firstItem="ubB-K8-6YC" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="5P7-0I-NCV"/>
+                            <constraint firstItem="eh7-cj-snY" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="6VD-Ga-VUU"/>
+                            <constraint firstItem="4vw-Aj-YBu" firstAttribute="top" secondItem="ubB-K8-6YC" secondAttribute="bottom" constant="24" id="CQP-Qt-I8D"/>
+                            <constraint firstItem="ubB-K8-6YC" firstAttribute="top" secondItem="Sdf-8v-UrA" secondAttribute="top" constant="25" id="FVw-Ye-ixe"/>
+                            <constraint firstItem="h9r-w3-VvI" firstAttribute="leading" secondItem="ubB-K8-6YC" secondAttribute="trailing" constant="20" id="Re9-UR-4yO"/>
+                            <constraint firstItem="h9r-w3-VvI" firstAttribute="top" secondItem="ubB-K8-6YC" secondAttribute="bottom" constant="-30" id="edM-N7-WbB"/>
+                            <constraint firstItem="Sdf-8v-UrA" firstAttribute="trailing" secondItem="eh7-cj-snY" secondAttribute="trailing" constant="16" id="fQR-pk-tAM"/>
+                            <constraint firstItem="4vw-Aj-YBu" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="qfs-Uy-0Y2"/>
+                            <constraint firstItem="eh7-cj-snY" firstAttribute="top" secondItem="4vw-Aj-YBu" secondAttribute="bottom" constant="129" id="rJk-pe-nJC"/>
+                            <constraint firstItem="ubB-K8-6YC" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="swc-N9-KjH"/>
+                            <constraint firstItem="Sdf-8v-UrA" firstAttribute="bottom" secondItem="eh7-cj-snY" secondAttribute="bottom" constant="20" id="vC1-uv-GYg"/>
+                            <constraint firstItem="n8a-z5-TZs" firstAttribute="top" secondItem="Sdf-8v-UrA" secondAttribute="top" constant="25" id="xCg-xq-cFU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Sdf-8v-UrA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7ym-ci-Pdh"/>
+                    <connections>
+                        <outlet property="textView" destination="eh7-cj-snY" id="W5g-d4-xS5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AQH-Y8-Eav" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2761" y="117"/>
+        </scene>
+        <!--Blue Center View Controller-->
         <scene sceneID="MME-74-EQw">
             <objects>
-                <tableViewController id="IgU-eO-1Lj" customClass="BLEViewController" sceneMemberID="viewController">
+                <tableViewController id="IgU-eO-1Lj" customClass="BlueCenterViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Zc-wD-R9M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,7 +163,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceX-N1-B3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1812" y="111.99400299850076"/>
+            <point key="canvasLocation" x="1938" y="131"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Der-rW-dJL">

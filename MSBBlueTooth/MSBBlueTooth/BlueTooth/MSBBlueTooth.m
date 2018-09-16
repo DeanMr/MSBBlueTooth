@@ -10,18 +10,13 @@
 #import "MSBBlueTooth+State.h"
 #import "NSString+Coding.h"
 
-#define SERVICE_UUID @"CDD1"
-#define CHARACTERISTIC_UUID @"CDD2"
-
 @interface MSBBlueTooth ()<CBPeripheralDelegate,CBCentralManagerDelegate>
 
-@property (nonatomic,strong) CBCentralManager *centerManager;   //中心管理器
-@property (strong , nonatomic) CBPeripheral * discoveredPeripheral;//周边设备
-@property (strong , nonatomic) CBCharacteristic *characteristic1;//周边设备服务特性
-
+//@property (nonatomic,strong) CBCentralManager *centerManager;   //中心管理器
 
 //扫描结果回调
 @property (nonatomic, copy) void (^didDiscoverPeripheralBlock)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI);
+@property (nonatomic, copy) void (^messageBlock)(NSData *value);
 @end
 
 @implementation MSBBlueTooth
@@ -32,7 +27,7 @@
     self = [super init];
     if (self) {
         
-        self.centerManager = [[CBCentralManager alloc]initWithDelegate:self queue:queue options:options];
+        self.centerManager = [[CBCentralManager alloc]initWithDelegate:self queue:queue options:nil];
         self.peripherals = [NSMutableArray arrayWithCapacity:1];
         
         NSLog(@"%s",__func__);
@@ -42,14 +37,15 @@
 }
 
 #pragma mark -- 开始扫描
-- (void)scanscanDiscoverToPeripherals:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block
+- (void)scanscanDiscoverToPeripherals:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block message:(void (^)(NSData *value))messageBlock
 {
     if ([self isStateOn:self.centerManager.state]) {
         
         _didDiscoverPeripheralBlock = block;
-        
+        _messageBlock = messageBlock;
         //判断状态开始扫瞄周围设备 第一个参数为空则会扫瞄所有的可连接设备  你可以指定一个CBUUID对象 从而只扫瞄注册用指定服务的设备
-        [self.centerManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:SERVICE_UUID]] options:@{ CBConnectPeripheralOptionNotifyOnConnectionKey: @YES}];
+        //@[[CBUUID UUIDWithString:SERVICE_UUID]]
+        [self.centerManager scanForPeripheralsWithServices:nil options:@{ CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
         //清空数组的所有外设元素
         [self.peripherals removeAllObjects];
     }
@@ -82,19 +78,19 @@
     [_centerManager connectPeripheral:_discoveredPeripheral options:@{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES}];
 }
 
-#pragma mark -- 向连接的外围设备写入数据
-- (void)writeData
-{
-    static NSInteger msg = 0;
-    msg++;
-    
-    NSString *msgStr = [NSString stringWithFormat:@"%ld",msg];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:msgStr,@"msg",@"ack",@"type", nil];
-    // 用NSData类型来写入
-    NSData *data = [[NSString convertToJSONData:dic] dataUsingEncoding:NSUTF8StringEncoding];
-    // 根据上面的特征self.characteristic来写入数据
-    [self.discoveredPeripheral writeValue:data forCharacteristic:self.characteristic1 type:CBCharacteristicWriteWithResponse];
-}
+//#pragma mark -- 向连接的外围设备写入数据
+//- (void)writeData
+//{
+//    static NSInteger msg = 0;
+//    msg++;
+//
+//    NSString *msgStr = [NSString stringWithFormat:@"%ld",msg];
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:msgStr,@"msg",@"ack",@"type", nil];
+//    // 用NSData类型来写入
+//    NSData *data = [[NSString convertToJSONData:dic] dataUsingEncoding:NSUTF8StringEncoding];
+//    // 根据上面的特征self.characteristic来写入数据
+//    [self.discoveredPeripheral writeValue:data forCharacteristic:self.characteristic1 type:CBCharacteristicWriteWithResponse];
+//}
 
 #pragma mark -- CBCentralManagerDelegate   coreBlueTooth实现检测蓝牙状态并通过代理返回结果
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
@@ -132,7 +128,7 @@
     NSLog(@"所有服务****：%@",peripheral.services);
 
     NSLog(@"蓝牙名字：%@  信号强弱：%@",pername,RSSI);
-    [self connectPeripheral:peripheral];
+//    [self connectPeripheral:peripheral];
     //将搜索到的设备添加到列表中
     [self.peripherals addObject:peripheral];
     
@@ -174,7 +170,7 @@
 //        [central connectPeripheral:peripheral options:nil];
     
     //重新扫描
-    [self scanscanDiscoverToPeripherals:nil];
+    [self scanscanDiscoverToPeripherals:_didDiscoverPeripheralBlock message:_messageBlock];
     
     //清空所有外设数组
     [self.peripherals removeAllObjects];
@@ -199,14 +195,10 @@
     {
         
         NSLog(@"服务%@",service.UUID);
+        // 根据UUID寻找服务中的特征
+        [peripheral discoverCharacteristics:nil forService:service];
         
-        //找到你需要的servicesuuid
-        if ([[NSString stringWithFormat:@"%@",service.UUID] isEqualToString:SERVICE_UUID])
-        {
         
-            // 根据UUID寻找服务中的特征
-            [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:CHARACTERISTIC_UUID]] forService:service];
-        }
     }
     NSLog(@"此时链接的peripheral：%@",peripheral);
     
@@ -215,19 +207,29 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
     
     // 遍历出所需要的特征
+    self.characteristics = service.characteristics;
     for (CBCharacteristic *characteristic in service.characteristics) {
         NSLog(@"所有特征：%@", characteristic);
         // 从外设开发人员那里拿到不同特征的UUID，不同特征做不同事情，比如有读取数据的特征，也有写入数据的特征
+        
+        
+        if ([[NSString stringWithFormat:@"%@",characteristic.UUID] isEqualToString: NOTIFY_UUID_1]) {
+            [self.discoveredPeripheral setNotifyValue:YES forCharacteristic:characteristic];
+        }
+        else if ([[NSString stringWithFormat:@"%@",characteristic.UUID] isEqualToString: NOTIFY_UUID_2]) {
+            [self.discoveredPeripheral setNotifyValue:YES forCharacteristic:characteristic];
+        }
+        
     }
     
     // 这里只获取一个特征，写入数据的时候需要用到这个特征
-    self.characteristic1 = service.characteristics.lastObject;
-    
-    // 直接读取这个特征数据，会调用didUpdateValueForCharacteristic
-    [peripheral readValueForCharacteristic:self.characteristic1];
-    
-    // 订阅通知
-    [self.discoveredPeripheral setNotifyValue:YES forCharacteristic:self.characteristic1];
+//    self.characteristic1 = service.characteristics.lastObject;
+//
+//    // 直接读取这个特征数据，会调用didUpdateValueForCharacteristic
+//    [peripheral readValueForCharacteristic:self.characteristic1];
+//
+//    // 订阅通知
+//    [self.discoveredPeripheral setNotifyValue:YES forCharacteristic:self.characteristic1];
 }
 
 
@@ -249,12 +251,33 @@
     // 拿到外设发送过来的数据
     
     NSData *data = characteristic.value;
-    NSString *value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    if (value) {
-        NSLog(@"接收到数据：%@ characteristic：%@",value , characteristic.UUID);
-        [self writeData];
+//    NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length]];
+//    //data转16进制
+//    [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
+//        unsigned char *dataBytes = (unsigned char*)bytes;
+//
+//        for (NSInteger i = 0; i < byteRange.length; i++) {
+//            NSString *hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
+//            if ([hexStr length] == 2) {
+//                [string appendString:hexStr];
+//            } else {
+//                [string appendFormat:@"0%@", hexStr];
+//            }
+//        }
+//    }];
+    
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(peripheral:didUpdateValueForCharacteristic:)]) {
+        [_delegate peripheral:peripheral didUpdateValueForCharacteristic:data];
     }
+    
+//    NSString *value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//
+//    if (value) {
+//        NSLog(@"接收到数据：%@ characteristic：%@",value , characteristic.UUID);
+////        [self writeData];
+//    }
     
 }
 
