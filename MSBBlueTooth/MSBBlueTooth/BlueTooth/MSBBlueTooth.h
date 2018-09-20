@@ -23,7 +23,7 @@
 @property (nonatomic,strong) CBCentralManager *centerManager;   //中心管理器
 @property (strong , nonatomic) CBPeripheral * discoveredPeripheral;//周边设备
 @property (strong , nonatomic) CBCharacteristic *characteristic1;//周边设备服务特性
-@property (nonatomic ,strong) NSArray *characteristics;
+@property (nonatomic ,copy) NSArray *characteristics;
 
 
 /**

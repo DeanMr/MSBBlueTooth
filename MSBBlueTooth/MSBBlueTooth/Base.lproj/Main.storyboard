@@ -78,6 +78,12 @@
                                     <action selector="getMac:" destination="9Sq-uV-Sj2" eventType="touchUpInside" id="pkI-Uo-29m"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数据：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nta-fU-oDB">
+                                <rect key="frame" x="16" y="222" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -86,12 +92,14 @@
                             <constraint firstItem="eh7-cj-snY" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="6VD-Ga-VUU"/>
                             <constraint firstItem="4vw-Aj-YBu" firstAttribute="top" secondItem="ubB-K8-6YC" secondAttribute="bottom" constant="24" id="CQP-Qt-I8D"/>
                             <constraint firstItem="ubB-K8-6YC" firstAttribute="top" secondItem="Sdf-8v-UrA" secondAttribute="top" constant="25" id="FVw-Ye-ixe"/>
+                            <constraint firstItem="Nta-fU-oDB" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="O54-CX-SXM"/>
                             <constraint firstItem="h9r-w3-VvI" firstAttribute="leading" secondItem="ubB-K8-6YC" secondAttribute="trailing" constant="20" id="Re9-UR-4yO"/>
                             <constraint firstItem="h9r-w3-VvI" firstAttribute="top" secondItem="ubB-K8-6YC" secondAttribute="bottom" constant="-30" id="edM-N7-WbB"/>
                             <constraint firstItem="Sdf-8v-UrA" firstAttribute="trailing" secondItem="eh7-cj-snY" secondAttribute="trailing" constant="16" id="fQR-pk-tAM"/>
                             <constraint firstItem="4vw-Aj-YBu" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="qfs-Uy-0Y2"/>
                             <constraint firstItem="eh7-cj-snY" firstAttribute="top" secondItem="4vw-Aj-YBu" secondAttribute="bottom" constant="129" id="rJk-pe-nJC"/>
                             <constraint firstItem="ubB-K8-6YC" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="swc-N9-KjH"/>
+                            <constraint firstItem="eh7-cj-snY" firstAttribute="top" secondItem="Nta-fU-oDB" secondAttribute="bottom" constant="15" id="uYt-cx-y9Q"/>
                             <constraint firstItem="Sdf-8v-UrA" firstAttribute="bottom" secondItem="eh7-cj-snY" secondAttribute="bottom" constant="20" id="vC1-uv-GYg"/>
                             <constraint firstItem="n8a-z5-TZs" firstAttribute="top" secondItem="Sdf-8v-UrA" secondAttribute="top" constant="25" id="xCg-xq-cFU"/>
                         </constraints>
