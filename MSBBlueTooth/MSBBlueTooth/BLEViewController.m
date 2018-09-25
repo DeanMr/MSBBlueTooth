@@ -64,6 +64,10 @@
         }
     }];
     
+    if ([string hasPrefix:@"0000"]) {
+        [self.blueTooth getMacAddress];
+    }
+    
     self.textView.text = [_textView.text stringByAppendingString:[NSString stringWithFormat:@"\n\n %@",string]];
 }
 

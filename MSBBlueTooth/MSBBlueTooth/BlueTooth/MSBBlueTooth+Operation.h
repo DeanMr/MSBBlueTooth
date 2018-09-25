@@ -11,6 +11,11 @@
 @interface MSBBlueTooth (Operation)
 
 /**
+ 握手
+ */
+- (void)shakeHands;
+
+/**
  获取设备信息
  */
 - (void)getDeviceInfo;

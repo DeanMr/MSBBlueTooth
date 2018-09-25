@@ -9,6 +9,22 @@
 #import "MSBBlueTooth+Operation.h"
 
 @implementation MSBBlueTooth (Operation)
+
+- (void)shakeHands
+{
+    char ms_byte[6];
+    ms_byte[0] = 0x04;
+    ms_byte[1] = 0x01;
+    ms_byte[1] = 0xAA;
+    ms_byte[1] = 0x55;
+    ms_byte[1] = 0x55;
+    ms_byte[1] = 0xAA;
+    
+    NSData *data = [NSData dataWithBytes:ms_byte length:strlen(ms_byte)];
+    
+    [self writeData:data UUIDString:WRITE_UUID_1];
+}
+
 - (void)getDeviceInfo
 {
     

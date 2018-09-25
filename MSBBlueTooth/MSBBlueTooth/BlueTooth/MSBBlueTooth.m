@@ -9,7 +9,7 @@
 #import "MSBBlueTooth.h"
 #import "MSBBlueTooth+State.h"
 #import "NSString+Coding.h"
-
+#import "MSBBlueTooth+Operation.h"
 @interface MSBBlueTooth ()<CBPeripheralDelegate,CBCentralManagerDelegate>
 
 //@property (nonatomic,strong) CBCentralManager *centerManager;   //中心管理器
@@ -45,7 +45,8 @@
         _messageBlock = messageBlock;
         //判断状态开始扫瞄周围设备 第一个参数为空则会扫瞄所有的可连接设备  你可以指定一个CBUUID对象 从而只扫瞄注册用指定服务的设备
         //@[[CBUUID UUIDWithString:SERVICE_UUID]]
-        [self.centerManager scanForPeripheralsWithServices:nil options:@{ CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
+        //@[[CBUUID UUIDWithString:SERVICE_UUID]]
+        [self.centerManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:SERVICE_UUID]] options:@{ CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
         //清空数组的所有外设元素
         [self.peripherals removeAllObjects];
     }
@@ -241,6 +242,10 @@
     }
     if (characteristic.isNotifying) {
         NSLog(@"订阅成功");
+        if ([[NSString stringWithFormat:@"%@",characteristic.UUID] isEqualToString: NOTIFY_UUID_1]) {
+            //握手
+            [self shakeHands];
+        }
     } else {
         NSLog(@"取消订阅");
     }
