@@ -1,0 +1,10 @@
+platform :ios,'8.0'
+inhibit_all_warnings!
+target 'MSBBlueTooth' do
+
+use_frameworks!
+pod 'iOSDFULibrary'
+
+
+
+end

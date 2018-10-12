@@ -1,0 +1,20 @@
+PODS:
+  - iOSDFULibrary (4.1.3):
+    - Zip (~> 1.0)
+  - Zip (1.1.0)
+
+DEPENDENCIES:
+  - iOSDFULibrary
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - iOSDFULibrary
+    - Zip
+
+SPEC CHECKSUMS:
+  iOSDFULibrary: 921bc0e250ad204a68ffe0cc98a7cb6ac8b13b9f
+  Zip: 8877eede3dda76bcac281225c20e71c25270774c
+
+PODFILE CHECKSUM: 77bdf9b3babbfa963a8aa45be1ae3cdfb1666e15
+
+COCOAPODS: 1.5.3
