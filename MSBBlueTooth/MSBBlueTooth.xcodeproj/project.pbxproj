@@ -22,6 +22,9 @@
 		394CE46921424D24004B3597 /* 实现流程.md in Resources */ = {isa = PBXBuildFile; fileRef = 394CE46821424D23004B3597 /* 实现流程.md */; };
 		4517E88E214DF4EB0024F1DF /* MSBBlueTooth+Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4517E88B214DF4EB0024F1DF /* MSBBlueTooth+Operation.m */; };
 		4517E891214DFDB40024F1DF /* BlueCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4517E890214DFDB40024F1DF /* BlueCenterViewController.m */; };
+		C9D2C529CCEF72C4D2E53990 /* Pods_MSBBlueTooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42AFD83B07B4CA7FD2E4027 /* Pods_MSBBlueTooth.framework */; };
+		E71124FE21707AE8003CFBAF /* DUFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71124FD21707AE8003CFBAF /* DUFViewController.m */; };
+		E711250021707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip in Resources */ = {isa = PBXBuildFile; fileRef = E71124FF21707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,11 +70,17 @@
 		394CE46321424A33004B3597 /* MSBBlueTooth+State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSBBlueTooth+State.m"; sourceTree = "<group>"; };
 		394CE46421424A33004B3597 /* NSString+Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Coding.h"; sourceTree = "<group>"; };
 		394CE46821424D23004B3597 /* 实现流程.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "实现流程.md"; sourceTree = "<group>"; };
+		3DAC770738C32918EACC9854 /* Pods-MSBBlueTooth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSBBlueTooth.release.xcconfig"; path = "Pods/Target Support Files/Pods-MSBBlueTooth/Pods-MSBBlueTooth.release.xcconfig"; sourceTree = "<group>"; };
 		4517E88B214DF4EB0024F1DF /* MSBBlueTooth+Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSBBlueTooth+Operation.m"; sourceTree = "<group>"; };
 		4517E88C214DF4EB0024F1DF /* MSBBlueTooth+Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSBBlueTooth+Operation.h"; sourceTree = "<group>"; };
 		4517E88D214DF4EB0024F1DF /* MSBlueToothProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSBlueToothProtocol.h; sourceTree = "<group>"; };
 		4517E88F214DFDB40024F1DF /* BlueCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueCenterViewController.h; sourceTree = "<group>"; };
 		4517E890214DFDB40024F1DF /* BlueCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCenterViewController.m; sourceTree = "<group>"; };
+		491EDA65C6355C82F3B7407D /* Pods-MSBBlueTooth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSBBlueTooth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MSBBlueTooth/Pods-MSBBlueTooth.debug.xcconfig"; sourceTree = "<group>"; };
+		E42AFD83B07B4CA7FD2E4027 /* Pods_MSBBlueTooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MSBBlueTooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E71124FC21707AE8003CFBAF /* DUFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DUFViewController.h; sourceTree = "<group>"; };
+		E71124FD21707AE8003CFBAF /* DUFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DUFViewController.m; sourceTree = "<group>"; };
+		E71124FF21707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "cw10c0002ver8-0831-testHR.zip"; path = "../../../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/a7136268bdea6b04b995091e8fcbc363/Message/MessageTemp/72ce6520d39d19311ae6b31e86434315/File/cw10c0002ver8-0831-testHR.zip"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9D2C529CCEF72C4D2E53990 /* Pods_MSBBlueTooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +109,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D967B97B01C65A511F56248 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E42AFD83B07B4CA7FD2E4027 /* Pods_MSBBlueTooth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		394CE41D214247AC004B3597 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +125,8 @@
 				394CE441214247AE004B3597 /* MSBBlueToothTests */,
 				394CE44C214247AE004B3597 /* MSBBlueToothUITests */,
 				394CE427214247AC004B3597 /* Products */,
+				5AEA411CBF68D09A211340F8 /* Pods */,
+				0D967B97B01C65A511F56248 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,11 +152,14 @@
 				4517E890214DFDB40024F1DF /* BlueCenterViewController.m */,
 				394CE45B21424993004B3597 /* BLEViewController.h */,
 				394CE45C21424993004B3597 /* BLEViewController.m */,
+				E71124FC21707AE8003CFBAF /* DUFViewController.h */,
+				E71124FD21707AE8003CFBAF /* DUFViewController.m */,
 				394CE42F214247AC004B3597 /* Main.storyboard */,
 				394CE432214247AD004B3597 /* Assets.xcassets */,
 				394CE434214247AD004B3597 /* LaunchScreen.storyboard */,
 				394CE437214247AD004B3597 /* Info.plist */,
 				394CE438214247AE004B3597 /* main.m */,
+				E71124FF21707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip */,
 			);
 			path = MSBBlueTooth;
 			sourceTree = "<group>";
@@ -175,6 +198,15 @@
 			path = BlueTooth;
 			sourceTree = "<group>";
 		};
+		5AEA411CBF68D09A211340F8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				491EDA65C6355C82F3B7407D /* Pods-MSBBlueTooth.debug.xcconfig */,
+				3DAC770738C32918EACC9854 /* Pods-MSBBlueTooth.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -182,9 +214,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 394CE452214247AE004B3597 /* Build configuration list for PBXNativeTarget "MSBBlueTooth" */;
 			buildPhases = (
+				68CBED6E6F94D3551F0BDCCB /* [CP] Check Pods Manifest.lock */,
 				394CE422214247AC004B3597 /* Sources */,
 				394CE423214247AC004B3597 /* Frameworks */,
 				394CE424214247AC004B3597 /* Resources */,
+				94C0E2FE29EE64624148B72B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -287,6 +321,7 @@
 				394CE436214247AD004B3597 /* LaunchScreen.storyboard in Resources */,
 				394CE433214247AD004B3597 /* Assets.xcassets in Resources */,
 				394CE431214247AC004B3597 /* Main.storyboard in Resources */,
+				E711250021707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +341,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		68CBED6E6F94D3551F0BDCCB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MSBBlueTooth-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94C0E2FE29EE64624148B72B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MSBBlueTooth/Pods-MSBBlueTooth-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MSBBlueTooth/Pods-MSBBlueTooth-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		394CE422214247AC004B3597 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -319,6 +403,7 @@
 				394CE42B214247AC004B3597 /* AppDelegate.m in Sources */,
 				394CE46721424A33004B3597 /* MSBBlueTooth+State.m in Sources */,
 				4517E891214DFDB40024F1DF /* BlueCenterViewController.m in Sources */,
+				E71124FE21707AE8003CFBAF /* DUFViewController.m in Sources */,
 				4517E88E214DF4EB0024F1DF /* MSBBlueTooth+Operation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,9 +571,11 @@
 		};
 		394CE453214247AE004B3597 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 491EDA65C6355C82F3B7407D /* Pods-MSBBlueTooth.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = T5358WJ3WV;
 				INFOPLIST_FILE = MSBBlueTooth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -503,9 +590,11 @@
 		};
 		394CE454214247AE004B3597 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DAC770738C32918EACC9854 /* Pods-MSBBlueTooth.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = T5358WJ3WV;
 				INFOPLIST_FILE = MSBBlueTooth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

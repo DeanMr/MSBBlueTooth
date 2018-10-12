@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wk4-Fu-8io">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wk4-Fu-8io">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -84,6 +84,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5H-7b-6SJ">
+                                <rect key="frame" x="166" y="99" width="76" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="UOp-0t-JNn"/>
+                                </constraints>
+                                <state key="normal" title="DFU"/>
+                                <connections>
+                                    <action selector="toDUFMode:" destination="9Sq-uV-Sj2" eventType="touchUpInside" id="I8U-kL-GiW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -94,8 +104,10 @@
                             <constraint firstItem="ubB-K8-6YC" firstAttribute="top" secondItem="Sdf-8v-UrA" secondAttribute="top" constant="25" id="FVw-Ye-ixe"/>
                             <constraint firstItem="Nta-fU-oDB" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="O54-CX-SXM"/>
                             <constraint firstItem="h9r-w3-VvI" firstAttribute="leading" secondItem="ubB-K8-6YC" secondAttribute="trailing" constant="20" id="Re9-UR-4yO"/>
+                            <constraint firstItem="T5H-7b-6SJ" firstAttribute="top" secondItem="4vw-Aj-YBu" secondAttribute="top" id="VOP-7k-s0q"/>
                             <constraint firstItem="h9r-w3-VvI" firstAttribute="top" secondItem="ubB-K8-6YC" secondAttribute="bottom" constant="-30" id="edM-N7-WbB"/>
                             <constraint firstItem="Sdf-8v-UrA" firstAttribute="trailing" secondItem="eh7-cj-snY" secondAttribute="trailing" constant="16" id="fQR-pk-tAM"/>
+                            <constraint firstItem="T5H-7b-6SJ" firstAttribute="leading" secondItem="4vw-Aj-YBu" secondAttribute="trailing" constant="25" id="mOw-cB-ZlX"/>
                             <constraint firstItem="4vw-Aj-YBu" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="qfs-Uy-0Y2"/>
                             <constraint firstItem="eh7-cj-snY" firstAttribute="top" secondItem="4vw-Aj-YBu" secondAttribute="bottom" constant="129" id="rJk-pe-nJC"/>
                             <constraint firstItem="ubB-K8-6YC" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="swc-N9-KjH"/>
@@ -112,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AQH-Y8-Eav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2761" y="117"/>
+            <point key="canvasLocation" x="2760.8000000000002" y="116.49175412293854"/>
         </scene>
         <!--Blue Center View Controller-->
         <scene sceneID="MME-74-EQw">

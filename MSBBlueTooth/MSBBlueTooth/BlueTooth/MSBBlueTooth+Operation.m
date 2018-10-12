@@ -58,7 +58,20 @@
     [self writeData:data UUIDString:WRITE_UUID_1];
 }
 
-
+- (void)toDUFMode
+{
+    //cd05aa5555aa
+    char ms_byte[6];
+    ms_byte[0] = 0xcd;
+    ms_byte[1] = 0x05;
+    ms_byte[2] = 0xaa;
+    ms_byte[3] = 0x55;
+    ms_byte[4] = 0x55;
+    ms_byte[5] = 0xaa;
+    NSData *data = [NSData dataWithBytes:ms_byte length:6];
+    
+    [self writeData:data UUIDString:WRITE_UUID_1];
+}
 
 #pragma mark -- 向连接的外围设备写入数据
 - (void)writeData:(NSData *)data UUIDString:(NSString *)UUIDString

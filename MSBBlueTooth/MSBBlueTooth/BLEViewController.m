@@ -7,6 +7,7 @@
 //
 
 #import "BLEViewController.h"
+#import "DUFViewController.h"
 //#import "MSBBlueTooth.h"
 
 @interface BLEViewController ()<MSBlueToothProtocol>
@@ -46,6 +47,16 @@
 - (IBAction)getMac:(id)sender {
     [self.blueTooth getMacAddress];
 }
+- (IBAction)toDUFMode:(id)sender {
+    
+    [self.blueTooth toDUFMode];
+    
+//    [self.blueTooth.centerManager cancelPeripheralConnection:self.blueTooth.discoveredPeripheral];
+    
+    DUFViewController *viewController = [[DUFViewController alloc]init];
+    viewController.blueTooth = self.blueTooth;
+    [self.navigationController pushViewController:viewController animated:YES];
+}
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(NSData *)data
 {
@@ -67,6 +78,10 @@
     if ([string hasPrefix:@"0000"]) {
         [self.blueTooth getMacAddress];
     }
+    
+//    if ([string isEqualToString:@"8600cd01"]) {
+//        [self.blueTooth.centerManager cancelPeripheralConnection:self.blueTooth.discoveredPeripheral];
+//    }
     
     self.textView.text = [_textView.text stringByAppendingString:[NSString stringWithFormat:@"\n\n %@",string]];
 }

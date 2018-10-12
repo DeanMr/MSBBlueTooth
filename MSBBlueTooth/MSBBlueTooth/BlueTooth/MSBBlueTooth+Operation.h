@@ -29,4 +29,9 @@
  获取MAC地址
  */
 - (void)getMacAddress;
+
+/**
+ 进入DFU模式
+ */
+- (void)toDUFMode;
 @end

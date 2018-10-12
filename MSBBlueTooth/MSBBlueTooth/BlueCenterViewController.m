@@ -9,8 +9,13 @@
 #import "BlueCenterViewController.h"
 #import "BLEViewController.h"
 #import "MSBBlueTooth.h"
+//#import "iOSDFULibrary-Swift.h"
+
 @interface BlueCenterViewController ()
 @property (nonatomic, strong)MSBBlueTooth *blueTooth;
+
+//@property (strong, nonatomic) DFUServiceController *controller;
+//@property (strong, nonatomic) DFUFirmware *selectedFirmware;
 @end
 
 @implementation BlueCenterViewController
@@ -25,17 +30,27 @@
      */
     
     self.blueTooth = [[MSBBlueTooth alloc]initWithQueue:nil options:@{CBCentralManagerOptionRestoreIdentifierKey:@"centralManagerIdentifier"}];
+    
+    
+    
 }
 
 - (IBAction)scan:(id)sender {
     
     //扫描并回调发现的每一台设备
-    [self.blueTooth scanscanDiscoverToPeripherals:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
-        
+    
+    [self.blueTooth scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:SERVICE_UUID]] handle:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
         [self.tableView reloadData];
-    } message:^(NSData *value) {
+    } concetState:^{
         
     }];
+    
+//    [self.blueTooth scanscanDiscoverToPeripherals:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
+//        
+//        [self.tableView reloadData];
+//    } message:^(NSData *value) {
+//        
+//    }];
     
 }
 
@@ -43,6 +58,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - Table view data source
 

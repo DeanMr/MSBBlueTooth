@@ -16,6 +16,10 @@
 #define WRITE_UUID_2 @"0AF1"
 #define NOTIFY_UUID_2 @"0AF2"
 
+//DFU SERVER
+#define legacyDfuServiceUUID     @"00001530-1212-EFDE-1523-785FEABCD123"
+#define secureDfuServiceUUID     @"FE59"
+#define deviceInfoServiceUUID    @"180A"
 @interface MSBBlueTooth : NSObject
 @property (nonatomic ,weak) id <MSBlueToothProtocol> delegate;
 @property (strong , nonatomic) NSMutableArray *peripherals;       //扫描的所有设备
@@ -24,6 +28,7 @@
 @property (strong , nonatomic) CBPeripheral * discoveredPeripheral;//周边设备
 @property (strong , nonatomic) CBCharacteristic *characteristic1;//周边设备服务特性
 @property (nonatomic ,copy) NSArray *characteristics;
+
 
 
 /**
@@ -36,6 +41,7 @@
 - (instancetype)initWithQueue:(nullable dispatch_queue_t)queue
                       options:(nullable NSDictionary<NSString *, id> *)options;
 
+- (void)scanForPeripheralsWithServices:(nullable NSArray<CBUUID *> *)serviceUUIDs handle:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block concetState:(void (^)(void))concetBlock;
 /**
  扫描周边设备
 

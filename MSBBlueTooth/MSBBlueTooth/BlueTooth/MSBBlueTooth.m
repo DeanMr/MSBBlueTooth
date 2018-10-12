@@ -17,6 +17,7 @@
 //扫描结果回调
 @property (nonatomic, copy) void (^didDiscoverPeripheralBlock)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI);
 @property (nonatomic, copy) void (^messageBlock)(NSData *value);
+@property (nonatomic, copy) void (^concetBlock)(void);
 @end
 
 @implementation MSBBlueTooth
@@ -34,6 +35,21 @@
     }
     
     return self;
+}
+
+- (void)scanForPeripheralsWithServices:(nullable NSArray<CBUUID *> *)serviceUUIDs handle:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block concetState:(void (^)(void))concetBlock
+{
+    if ([self isStateOn:self.centerManager.state]) {
+        
+        _didDiscoverPeripheralBlock = block;
+        _concetBlock = concetBlock;
+        //判断状态开始扫瞄周围设备 第一个参数为空则会扫瞄所有的可连接设备  你可以指定一个CBUUID对象 从而只扫瞄注册用指定服务的设备
+        //@[[CBUUID UUIDWithString:SERVICE_UUID]]
+        //@[[CBUUID UUIDWithString:SERVICE_UUID]]
+        [self.centerManager scanForPeripheralsWithServices:serviceUUIDs options:@{ CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
+        //清空数组的所有外设元素
+        [self.peripherals removeAllObjects];
+    }
 }
 
 #pragma mark -- 开始扫描
@@ -120,7 +136,7 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI
 {
     //过滤掉无效的结果
-    if (peripheral == nil||peripheral.identifier == nil/*||peripheral.name == nil*/)
+    if (peripheral == nil||peripheral.identifier == nil || peripheral.name == nil)
     {
         return;
     }
@@ -147,7 +163,7 @@
     // 设置设备代理
     [peripheral setDelegate:self];
     // 大概获取服务和特征
-    [peripheral discoverServices:@[[CBUUID UUIDWithString:SERVICE_UUID]]];
+    [peripheral discoverServices:@[[CBUUID UUIDWithString:SERVICE_UUID],[CBUUID UUIDWithString:legacyDfuServiceUUID]]];
     
     NSLog(@"Peripheral Connected");
     
@@ -155,6 +171,9 @@
         [_centerManager stopScan];
     }
 
+    if (_concetBlock) {
+        _concetBlock();
+    }
     NSLog(@"Scanning stopped");
     
 }
@@ -171,7 +190,7 @@
 //        [central connectPeripheral:peripheral options:nil];
     
     //重新扫描
-    [self scanscanDiscoverToPeripherals:_didDiscoverPeripheralBlock message:_messageBlock];
+//    [self scanscanDiscoverToPeripherals:_didDiscoverPeripheralBlock message:_messageBlock];
     
     //清空所有外设数组
     [self.peripherals removeAllObjects];
