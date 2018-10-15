@@ -16,7 +16,17 @@
 @property (strong, nonatomic) DFUServiceController *controller;
 @property (strong, nonatomic) DFUFirmware *selectedFirmware;
 @property (nonatomic ,strong) UITableView *tableView;
-      //扫描的所有设备
+@property (strong , nonatomic) CBPeripheral * selectPeripheral;//周边设备
+
+//subView
+@property (nonatomic ,strong) UIView *footerView;
+@property (nonatomic ,strong) UIButton *linkButton;
+@property (nonatomic ,strong) UIButton *upButton;
+
+@property (nonatomic ,strong) UIProgressView *progressView;
+@property (nonatomic ,strong) UILabel *titleLabel;
+
+
 @end
 
 @implementation DUFViewController
@@ -27,10 +37,45 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        
+        _tableView.tableFooterView = self.footerView;
     }
     
     return _tableView;
 }
+
+- (UIView *)footerView
+{
+    if (!_footerView) {
+        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
+        _linkButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _linkButton.frame = CGRectMake(10, 10, 100, 30);
+        [_linkButton setTitle:@"连接" forState:UIControlStateNormal];
+        [_linkButton addTarget:self action:@selector(linkClick:) forControlEvents:UIControlEventTouchUpInside];
+        _linkButton.enabled = NO;
+        [_footerView addSubview:_linkButton];
+        
+        _upButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _upButton.frame = CGRectMake(self.view.bounds.size.width - 110, 10, 100, 30);
+        [_upButton addTarget:self action:@selector(updateClick:) forControlEvents:UIControlEventTouchUpInside];
+        _upButton.enabled = NO;
+        [_upButton setTitle:@"升级" forState:UIControlStateNormal];
+        [_footerView addSubview:_upButton];
+        
+        _progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(10, 75, self.view.bounds.size.width - 130, 30)];
+        _progressView.progress = 0;
+        [_footerView addSubview:_progressView];
+        
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width - 110, 60, 100, 30)];
+        _titleLabel.font = [UIFont systemFontOfSize:17.0];
+        
+        [_footerView addSubview:_titleLabel];
+        
+    }
+    return _footerView;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -57,10 +102,22 @@
 #pragma mark ----------- 连接成功 -------------
 - (void)ms_centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    [self toDUF];
+//    [self toDUF];
+    _upButton.enabled = YES;
 }
 
+#pragma mark ----------- 连接 -------------
+- (void)linkClick:(UIButton *)button
+{
+    _linkButton.enabled = NO;
+    [self.blueTooth connectPeripheral:self.selectPeripheral];
+}
 
+#pragma mark ----------- 升级 -------------
+- (void)updateClick:(UIButton *)button
+{
+    [self toDUF];
+}
 - (void)toDUF
 {
 
@@ -84,8 +141,12 @@
 //更新进度
 - (void)dfuProgressDidChangeFor:(NSInteger)part outOf:(NSInteger)totalParts to:(NSInteger)progress currentSpeedBytesPerSecond:(double)currentSpeedBytesPerSecond avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond{
     
-    float currentProgress=((float) progress /totalParts);
-    NSLog(@"进度：%%%f",currentProgress);
+    float currentProgress=((float) progress /totalParts)/100;
+    
+    _progressView.progress = currentProgress;
+    _titleLabel.text = [NSString stringWithFormat:@"%%%.0f",currentProgress*100];
+    
+    NSLog(@"进度：%%%f",currentProgress*100);
 }
 
 #pragma mark ----------- 日志打印 -------------
@@ -119,11 +180,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 1;
+    return self.blueTooth.peripherals.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.blueTooth.peripherals.count;
+    return 1;
 }
 
 
@@ -140,7 +201,7 @@
     
     // 将蓝牙外设对象接出，取出name，显示
     //蓝牙对象在下面环节会查找出来，被放进BleViewPerArr数组里面，是CBPeripheral对象
-    CBPeripheral *per=(CBPeripheral *)self.blueTooth.peripherals[indexPath.row];
+    CBPeripheral *per=(CBPeripheral *)self.blueTooth.peripherals[indexPath.section];
     cell.textLabel.text = per.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",per.identifier];
     
@@ -150,9 +211,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row < self.blueTooth.peripherals.count) {
+    if (indexPath.section < self.blueTooth.peripherals.count) {
+        
+        self.selectPeripheral = self.blueTooth.peripherals[indexPath.section];
+        _linkButton.enabled = YES;
         //连接设备
-        [self.blueTooth connectPeripheral:self.blueTooth.peripherals[indexPath.row]];
+//        [self.blueTooth connectPeripheral:self.blueTooth.peripherals[indexPath.section]];
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return self.footerView;
+}
+
+- (CGFloat )tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 100;
 }
 @end
