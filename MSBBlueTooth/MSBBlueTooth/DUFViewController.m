@@ -8,10 +8,15 @@
 
 #import "DUFViewController.h"
 #import <iOSDFULibrary/iOSDFULibrary-Swift.h>
-@interface DUFViewController ()<LoggerDelegate, DFUServiceDelegate, DFUProgressDelegate,UITableViewDelegate,UITableViewDataSource>
+//#import "DFUFirmwareProvider.swift"
+//#import "DFViewController.swift"
+
+@interface DUFViewController ()<LoggerDelegate, DFUServiceDelegate, DFUProgressDelegate,UITableViewDelegate,UITableViewDataSource,MSBlueToothProtocol>
+@property (nonatomic, strong)MSBBlueTooth *blueTooth;
 @property (strong, nonatomic) DFUServiceController *controller;
 @property (strong, nonatomic) DFUFirmware *selectedFirmware;
 @property (nonatomic ,strong) UITableView *tableView;
+      //扫描的所有设备
 @end
 
 @implementation DUFViewController
@@ -31,30 +36,44 @@
     // Do any additional setup after loading the view.
     
     [self.view addSubview:self.tableView];
-//    self.blueTooth = [[MSBBlueTooth alloc]initWithQueue:nil options:@{CBCentralManagerOptionRestoreIdentifierKey:@"centralManagerIdentifier1"}];
+
+    self.blueTooth = [[MSBBlueTooth alloc]initWithQueue:nil mode:MSCBManagerUpdateMode setDelegate:self options:nil];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self.blueTooth scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:legacyDfuServiceUUID],[CBUUID UUIDWithString:secureDfuServiceUUID],[CBUUID UUIDWithString:deviceInfoServiceUUID]] handle:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
-        
-        [self.tableView reloadData];
-        
-    } concetState:^{
-        [self toDUF];
-    }];
-
+    
 }
+#pragma mark ----------- 检测蓝牙状态 -------------
+- (void)ms_centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    [self.blueTooth scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:legacyDfuServiceUUID],[CBUUID UUIDWithString:secureDfuServiceUUID],[CBUUID UUIDWithString:deviceInfoServiceUUID]]];
+}
+
+#pragma mark ----------- 发现设备 -------------
+- (void)ms_centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI
+{
+    [self.tableView reloadData];
+}
+
+#pragma mark ----------- 连接成功 -------------
+- (void)ms_centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+{
+    [self toDUF];
+}
+
 
 - (void)toDUF
 {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"cw10c0002ver8-0831-testHR" ofType:@"zip"];
+
     
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Custom/cw10c0002ver8-0831-testHR" ofType:@"zip"];
+//    NSArray *urls = [[NSBundle mainBundle]URLsForResourcesWithExtension:@"zip" subdirectory:@"Custom"];
     
     DFUServiceInitiator *initiator = [[DFUServiceInitiator alloc] initWithCentralManager:self.blueTooth.centerManager target:self.blueTooth.discoveredPeripheral];
     
     self.selectedFirmware = [[DFUFirmware alloc]  initWithUrlToZipFile:[NSURL fileURLWithPath:filePath]];
     
-    [initiator withFirmware:self.selectedFirmware];
-    
+    initiator = [initiator withFirmware:self.selectedFirmware];
+    initiator.forceDfu = YES;
     initiator.logger = self;
     initiator.delegate = self;
     initiator.progressDelegate = self;
@@ -65,14 +84,14 @@
 //更新进度
 - (void)dfuProgressDidChangeFor:(NSInteger)part outOf:(NSInteger)totalParts to:(NSInteger)progress currentSpeedBytesPerSecond:(double)currentSpeedBytesPerSecond avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond{
     
-    float currentProgress=((float) progress /totalParts)/100;
-    NSLog(@"%f",currentProgress);
+    float currentProgress=((float) progress /totalParts);
+    NSLog(@"进度：%%%f",currentProgress);
 }
 
 #pragma mark ----------- 日志打印 -------------
 -(void)logWith:(enum LogLevel)level message:(NSString *)message
 {
-    NSLog(@"%logWith ld: %@", (long) level, message);
+//    NSLog(@"%logWith ld: %@", (long) level, message);
 }
 
 //更新进度状态  升级开始..升级中断..升级完成等状态
@@ -81,7 +100,7 @@
     NSLog(@"DFUState state: %ld",state);
     //升级完成
     if (state==DFUStateCompleted) {
-        
+        NSLog(@"升级完成");
     }
     
 }

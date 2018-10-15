@@ -20,6 +20,14 @@
 #define legacyDfuServiceUUID     @"00001530-1212-EFDE-1523-785FEABCD123"
 #define secureDfuServiceUUID     @"FE59"
 #define deviceInfoServiceUUID    @"180A"
+
+
+
+typedef NS_ENUM(NSInteger, MSCBManagerMode) {
+    MSCBManagerDefaultMode = 0,
+    MSCBManagerUpdateMode
+};
+
 @interface MSBBlueTooth : NSObject
 @property (nonatomic ,weak) id <MSBlueToothProtocol> delegate;
 @property (strong , nonatomic) NSMutableArray *peripherals;       //扫描的所有设备
@@ -29,7 +37,7 @@
 @property (strong , nonatomic) CBCharacteristic *characteristic1;//周边设备服务特性
 @property (nonatomic ,copy) NSArray *characteristics;
 
-
+@property (nonatomic, assign) MSCBManagerMode managerMode;
 
 /**
  创建一个蓝牙中心管理器实例 ，
@@ -38,10 +46,9 @@
  @param options 指定管理器选项的可选字典。
  @return 返回蓝牙类实例
  */
-- (instancetype)initWithQueue:(nullable dispatch_queue_t)queue
-                      options:(nullable NSDictionary<NSString *, id> *)options;
+- (instancetype)initWithQueue:(nullable dispatch_queue_t)queue mode:(MSCBManagerMode)managerMode setDelegate:(id)delegate options:(nullable NSDictionary<NSString *, id> *)options;
 
-- (void)scanForPeripheralsWithServices:(nullable NSArray<CBUUID *> *)serviceUUIDs handle:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block concetState:(void (^)(void))concetBlock;
+- (void)scanForPeripheralsWithServices:(nullable NSArray<CBUUID *> *)serviceUUIDs;
 /**
  扫描周边设备
 

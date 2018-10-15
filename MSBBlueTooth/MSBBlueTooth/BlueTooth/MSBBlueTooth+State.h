@@ -8,6 +8,9 @@
 
 #import "MSBBlueTooth.h"
 
+
+
+
 @interface MSBBlueTooth (State)
 - (BOOL)isStateOn:(CBManagerState)state;
 @end

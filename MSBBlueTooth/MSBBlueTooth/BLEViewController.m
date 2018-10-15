@@ -54,7 +54,7 @@
 //    [self.blueTooth.centerManager cancelPeripheralConnection:self.blueTooth.discoveredPeripheral];
     
     DUFViewController *viewController = [[DUFViewController alloc]init];
-    viewController.blueTooth = self.blueTooth;
+//    viewController.blueTooth = self.blueTooth;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

@@ -24,7 +24,7 @@
 		4517E891214DFDB40024F1DF /* BlueCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4517E890214DFDB40024F1DF /* BlueCenterViewController.m */; };
 		C9D2C529CCEF72C4D2E53990 /* Pods_MSBBlueTooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42AFD83B07B4CA7FD2E4027 /* Pods_MSBBlueTooth.framework */; };
 		E71124FE21707AE8003CFBAF /* DUFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71124FD21707AE8003CFBAF /* DUFViewController.m */; };
-		E711250021707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip in Resources */ = {isa = PBXBuildFile; fileRef = E71124FF21707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip */; };
+		E7112507217427E7003CFBAF /* Custom in Resources */ = {isa = PBXBuildFile; fileRef = E7112506217427E7003CFBAF /* Custom */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +80,8 @@
 		E42AFD83B07B4CA7FD2E4027 /* Pods_MSBBlueTooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MSBBlueTooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71124FC21707AE8003CFBAF /* DUFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DUFViewController.h; sourceTree = "<group>"; };
 		E71124FD21707AE8003CFBAF /* DUFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DUFViewController.m; sourceTree = "<group>"; };
-		E71124FF21707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = "cw10c0002ver8-0831-testHR.zip"; path = "../../../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/a7136268bdea6b04b995091e8fcbc363/Message/MessageTemp/72ce6520d39d19311ae6b31e86434315/File/cw10c0002ver8-0831-testHR.zip"; sourceTree = "<group>"; };
+		E7112506217427E7003CFBAF /* Custom */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Custom; sourceTree = "<group>"; };
+		E711250821743331003CFBAF /* MSBBlueTooth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MSBBlueTooth-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,11 +156,12 @@
 				E71124FC21707AE8003CFBAF /* DUFViewController.h */,
 				E71124FD21707AE8003CFBAF /* DUFViewController.m */,
 				394CE42F214247AC004B3597 /* Main.storyboard */,
+				E7112506217427E7003CFBAF /* Custom */,
 				394CE432214247AD004B3597 /* Assets.xcassets */,
 				394CE434214247AD004B3597 /* LaunchScreen.storyboard */,
 				394CE437214247AD004B3597 /* Info.plist */,
 				394CE438214247AE004B3597 /* main.m */,
-				E71124FF21707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip */,
+				E711250821743331003CFBAF /* MSBBlueTooth-Bridging-Header.h */,
 			);
 			path = MSBBlueTooth;
 			sourceTree = "<group>";
@@ -276,6 +278,7 @@
 				TargetAttributes = {
 					394CE425214247AC004B3597 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -317,11 +320,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7112507217427E7003CFBAF /* Custom in Resources */,
 				394CE46921424D24004B3597 /* 实现流程.md in Resources */,
 				394CE436214247AD004B3597 /* LaunchScreen.storyboard in Resources */,
 				394CE433214247AD004B3597 /* Assets.xcassets in Resources */,
 				394CE431214247AC004B3597 /* Main.storyboard in Resources */,
-				E711250021707BE0003CFBAF /* cw10c0002ver8-0831-testHR.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +577,7 @@
 			baseConfigurationReference = 491EDA65C6355C82F3B7407D /* Pods-MSBBlueTooth.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = T5358WJ3WV;
@@ -584,6 +588,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = msb.MSBBlueTooth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MSBBlueTooth/MSBBlueTooth-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -593,6 +600,7 @@
 			baseConfigurationReference = 3DAC770738C32918EACC9854 /* Pods-MSBBlueTooth.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = T5358WJ3WV;
@@ -603,6 +611,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = msb.MSBBlueTooth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MSBBlueTooth/MSBBlueTooth-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

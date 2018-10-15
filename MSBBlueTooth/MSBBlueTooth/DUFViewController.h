@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DUFViewController : UIViewController
-@property (nonatomic, strong)MSBBlueTooth *blueTooth;
+
 @end
 
 NS_ASSUME_NONNULL_END

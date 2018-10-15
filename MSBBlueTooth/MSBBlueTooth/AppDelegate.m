@@ -25,7 +25,7 @@
         for (NSString *identifier in centralManagerIdentifiers) {
             NSLog(@"系统启动项目");
             //在这里创建的蓝牙实例一定要被当前类持有，不然出了这个函数就被销毁了，蓝牙检测会出现“XPC connection invalid”
-            self.bluetooth = [[MSBBlueTooth alloc]initWithQueue:nil options:@{CBCentralManagerOptionRestoreIdentifierKey : identifier}];
+            self.bluetooth = [[MSBBlueTooth alloc]initWithQueue:nil mode:MSCBManagerDefaultMode setDelegate:nil options:@{CBCentralManagerOptionRestoreIdentifierKey : identifier}];
             NSLog(@"");
         }
     }

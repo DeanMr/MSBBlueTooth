@@ -22,30 +22,29 @@
 
 @implementation MSBBlueTooth
 
-- (instancetype)initWithQueue:(nullable dispatch_queue_t)queue
-                      options:(nullable NSDictionary<NSString *, id> *)options
+- (instancetype)initWithQueue:(nullable dispatch_queue_t)queue mode:(MSCBManagerMode)managerMode setDelegate:(id)delegate options:(nullable NSDictionary<NSString *, id> *)options
 {
     self = [super init];
     if (self) {
-        
-        self.centerManager = [[CBCentralManager alloc]initWithDelegate:self queue:queue options:nil];
+        self.delegate = delegate;
+        //升级模式不需要后台恢复模式
+        if (managerMode == MSCBManagerUpdateMode) {
+            options = nil;
+        }
+        self.centerManager = [[CBCentralManager alloc]initWithDelegate:self queue:queue options:options];
         self.peripherals = [NSMutableArray arrayWithCapacity:1];
-        
+        self.managerMode = managerMode;
         NSLog(@"%s",__func__);
     }
     
     return self;
 }
 
-- (void)scanForPeripheralsWithServices:(nullable NSArray<CBUUID *> *)serviceUUIDs handle:(void (^)(CBCentralManager *central,CBPeripheral *peripheral,NSDictionary *advertisementData, NSNumber *RSSI))block concetState:(void (^)(void))concetBlock
+
+- (void)scanForPeripheralsWithServices:(nullable NSArray<CBUUID *> *)serviceUUIDs
 {
     if ([self isStateOn:self.centerManager.state]) {
-        
-        _didDiscoverPeripheralBlock = block;
-        _concetBlock = concetBlock;
         //判断状态开始扫瞄周围设备 第一个参数为空则会扫瞄所有的可连接设备  你可以指定一个CBUUID对象 从而只扫瞄注册用指定服务的设备
-        //@[[CBUUID UUIDWithString:SERVICE_UUID]]
-        //@[[CBUUID UUIDWithString:SERVICE_UUID]]
         [self.centerManager scanForPeripheralsWithServices:serviceUUIDs options:@{ CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
         //清空数组的所有外设元素
         [self.peripherals removeAllObjects];
@@ -60,8 +59,7 @@
         _didDiscoverPeripheralBlock = block;
         _messageBlock = messageBlock;
         //判断状态开始扫瞄周围设备 第一个参数为空则会扫瞄所有的可连接设备  你可以指定一个CBUUID对象 从而只扫瞄注册用指定服务的设备
-        //@[[CBUUID UUIDWithString:SERVICE_UUID]]
-        //@[[CBUUID UUIDWithString:SERVICE_UUID]]
+  
         [self.centerManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:SERVICE_UUID]] options:@{ CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
         //清空数组的所有外设元素
         [self.peripherals removeAllObjects];
@@ -115,6 +113,10 @@
     //判断蓝牙是否开启
     NSLog(@"%s",__func__);
     if ([self isStateOn:central.state]) {
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(ms_centralManagerDidUpdateState:)]) {
+            [_delegate ms_centralManagerDidUpdateState:central];
+        }
         //程序回复后将状态保存的设备进行重连
         for (CBPeripheral *peripheral in self.peripherals) {
             [self connectPeripheral:peripheral];
@@ -149,6 +151,10 @@
     //将搜索到的设备添加到列表中
     [self.peripherals addObject:peripheral];
     
+    if (_delegate && [_delegate respondsToSelector:@selector(ms_centralManager:didDiscoverPeripheral:advertisementData:RSSI:)]) {
+        [_delegate ms_centralManager:central didDiscoverPeripheral:peripheral advertisementData:advertisementData RSSI:RSSI];
+    }
+    
     if (_didDiscoverPeripheralBlock) {
         _didDiscoverPeripheralBlock(central,peripheral,advertisementData,RSSI);
     }
@@ -163,7 +169,10 @@
     // 设置设备代理
     [peripheral setDelegate:self];
     // 大概获取服务和特征
-    [peripheral discoverServices:@[[CBUUID UUIDWithString:SERVICE_UUID],[CBUUID UUIDWithString:legacyDfuServiceUUID]]];
+    if (self.managerMode == MSCBManagerDefaultMode) {
+        [peripheral discoverServices:@[[CBUUID UUIDWithString:SERVICE_UUID]]];
+    }
+    
     
     NSLog(@"Peripheral Connected");
     
@@ -171,6 +180,11 @@
         [_centerManager stopScan];
     }
 
+    if (_delegate && [_delegate respondsToSelector:@selector(ms_centralManager:didConnectPeripheral:)]) {
+        [_delegate ms_centralManager:central didConnectPeripheral:peripheral];
+    }
+    
+    
     if (_concetBlock) {
         _concetBlock();
     }

@@ -11,7 +11,7 @@
 #import "MSBBlueTooth.h"
 //#import "iOSDFULibrary-Swift.h"
 
-@interface BlueCenterViewController ()
+@interface BlueCenterViewController ()<MSBlueToothProtocol>
 @property (nonatomic, strong)MSBBlueTooth *blueTooth;
 
 //@property (strong, nonatomic) DFUServiceController *controller;
@@ -29,7 +29,7 @@
      options: 添加key：CBCentralManagerOptionRestoreIdentifierKey是为恢复标识符的字典key
      */
     
-    self.blueTooth = [[MSBBlueTooth alloc]initWithQueue:nil options:@{CBCentralManagerOptionRestoreIdentifierKey:@"centralManagerIdentifier"}];
+    self.blueTooth = [[MSBBlueTooth alloc]initWithQueue:nil mode:MSCBManagerDefaultMode setDelegate:self options:@{CBCentralManagerOptionRestoreIdentifierKey:@"centralManagerIdentifier"}];
     
     
     
@@ -39,24 +39,27 @@
     
     //扫描并回调发现的每一台设备
     
-    [self.blueTooth scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:SERVICE_UUID]] handle:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
-        [self.tableView reloadData];
-    } concetState:^{
-        
-    }];
-    
-//    [self.blueTooth scanscanDiscoverToPeripherals:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
-//        
-//        [self.tableView reloadData];
-//    } message:^(NSData *value) {
-//        
-//    }];
+    [self.blueTooth scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:SERVICE_UUID]]];
     
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark ----------- 发现设备 -------------
+- (void)ms_centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI
+{
+    [self.tableView reloadData];
+}
+
+#pragma mark ----------- 连接成功 -------------
+- (void)ms_centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+{
+    
 }
 
 
