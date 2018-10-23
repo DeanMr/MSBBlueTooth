@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wk4-Fu-8io">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wk4-Fu-8io">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,6 +13,10 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i15-Ag-SM2"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kfu-Ti-vqK"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +31,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="We6-oU-2Oq"/>
                 </viewController>
@@ -40,6 +42,10 @@
         <scene sceneID="Uq0-N7-W1o">
             <objects>
                 <viewController storyboardIdentifier="blueID" id="9Sq-uV-Sj2" customClass="BLEViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kkp-Pi-dzC"/>
+                        <viewControllerLayoutGuide type="bottom" id="JuV-k6-Gxc"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="blueID" id="7fb-9T-QOO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,24 +104,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="n8a-z5-TZs" firstAttribute="leading" secondItem="h9r-w3-VvI" secondAttribute="trailing" constant="13" id="0P0-7o-gH6"/>
-                            <constraint firstItem="ubB-K8-6YC" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="5P7-0I-NCV"/>
-                            <constraint firstItem="eh7-cj-snY" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="6VD-Ga-VUU"/>
+                            <constraint firstItem="ubB-K8-6YC" firstAttribute="leading" secondItem="7fb-9T-QOO" secondAttribute="leading" constant="16" id="5P7-0I-NCV"/>
+                            <constraint firstItem="eh7-cj-snY" firstAttribute="leading" secondItem="7fb-9T-QOO" secondAttribute="leading" constant="16" id="6VD-Ga-VUU"/>
                             <constraint firstItem="4vw-Aj-YBu" firstAttribute="top" secondItem="ubB-K8-6YC" secondAttribute="bottom" constant="24" id="CQP-Qt-I8D"/>
-                            <constraint firstItem="ubB-K8-6YC" firstAttribute="top" secondItem="Sdf-8v-UrA" secondAttribute="top" constant="25" id="FVw-Ye-ixe"/>
-                            <constraint firstItem="Nta-fU-oDB" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="O54-CX-SXM"/>
+                            <constraint firstItem="ubB-K8-6YC" firstAttribute="top" secondItem="kkp-Pi-dzC" secondAttribute="bottom" constant="25" id="FVw-Ye-ixe"/>
+                            <constraint firstItem="Nta-fU-oDB" firstAttribute="leading" secondItem="7fb-9T-QOO" secondAttribute="leading" constant="16" id="O54-CX-SXM"/>
                             <constraint firstItem="h9r-w3-VvI" firstAttribute="leading" secondItem="ubB-K8-6YC" secondAttribute="trailing" constant="20" id="Re9-UR-4yO"/>
                             <constraint firstItem="T5H-7b-6SJ" firstAttribute="top" secondItem="4vw-Aj-YBu" secondAttribute="top" id="VOP-7k-s0q"/>
                             <constraint firstItem="h9r-w3-VvI" firstAttribute="top" secondItem="ubB-K8-6YC" secondAttribute="bottom" constant="-30" id="edM-N7-WbB"/>
-                            <constraint firstItem="Sdf-8v-UrA" firstAttribute="trailing" secondItem="eh7-cj-snY" secondAttribute="trailing" constant="16" id="fQR-pk-tAM"/>
+                            <constraint firstAttribute="trailing" secondItem="eh7-cj-snY" secondAttribute="trailing" constant="16" id="fQR-pk-tAM"/>
                             <constraint firstItem="T5H-7b-6SJ" firstAttribute="leading" secondItem="4vw-Aj-YBu" secondAttribute="trailing" constant="25" id="mOw-cB-ZlX"/>
-                            <constraint firstItem="4vw-Aj-YBu" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="qfs-Uy-0Y2"/>
+                            <constraint firstItem="4vw-Aj-YBu" firstAttribute="leading" secondItem="7fb-9T-QOO" secondAttribute="leading" constant="16" id="qfs-Uy-0Y2"/>
                             <constraint firstItem="eh7-cj-snY" firstAttribute="top" secondItem="4vw-Aj-YBu" secondAttribute="bottom" constant="129" id="rJk-pe-nJC"/>
-                            <constraint firstItem="ubB-K8-6YC" firstAttribute="leading" secondItem="Sdf-8v-UrA" secondAttribute="leading" constant="16" id="swc-N9-KjH"/>
+                            <constraint firstItem="ubB-K8-6YC" firstAttribute="leading" secondItem="7fb-9T-QOO" secondAttribute="leading" constant="16" id="swc-N9-KjH"/>
                             <constraint firstItem="eh7-cj-snY" firstAttribute="top" secondItem="Nta-fU-oDB" secondAttribute="bottom" constant="15" id="uYt-cx-y9Q"/>
-                            <constraint firstItem="Sdf-8v-UrA" firstAttribute="bottom" secondItem="eh7-cj-snY" secondAttribute="bottom" constant="20" id="vC1-uv-GYg"/>
-                            <constraint firstItem="n8a-z5-TZs" firstAttribute="top" secondItem="Sdf-8v-UrA" secondAttribute="top" constant="25" id="xCg-xq-cFU"/>
+                            <constraint firstItem="JuV-k6-Gxc" firstAttribute="top" secondItem="eh7-cj-snY" secondAttribute="bottom" constant="20" id="vC1-uv-GYg"/>
+                            <constraint firstItem="n8a-z5-TZs" firstAttribute="top" secondItem="kkp-Pi-dzC" secondAttribute="bottom" constant="25" id="xCg-xq-cFU"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Sdf-8v-UrA"/>
                     </view>
                     <navigationItem key="navigationItem" id="7ym-ci-Pdh"/>
                     <connections>
@@ -406,7 +411,6 @@
                             <constraint firstItem="V0R-zq-TsN" firstAttribute="leading" secondItem="jZw-GB-rY4" secondAttribute="leading" id="hJg-5v-HML"/>
                             <constraint firstItem="leL-rt-reM" firstAttribute="centerY" secondItem="jZw-GB-rY4" secondAttribute="centerY" id="rgF-ub-f6g"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="P1E-Xa-mij"/>
                     </view>
                     <navigationItem key="navigationItem" title="DFU" id="VKL-u6-u8K">
                         <barButtonItem key="backBarButtonItem" title="Back" id="jHY-lG-0Ys"/>

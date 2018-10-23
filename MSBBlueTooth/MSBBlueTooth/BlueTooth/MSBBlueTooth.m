@@ -117,7 +117,7 @@
     NSLog(@"%s",__func__);
     NSArray *peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey];
     //讲状态保存的设备加入列表，在蓝牙检测状态的回调里实现重连
-    self.peripherals = [NSMutableArray arrayWithArray:peripherals];
+//    self.peripherals = [NSMutableArray arrayWithArray:peripherals];
     
 }
 
@@ -136,6 +136,9 @@
     NSLog(@"蓝牙名字：%@  信号强弱：%@",pername,RSSI);
 //    [self connectPeripheral:peripheral];
     //将搜索到的设备添加到列表中
+    
+    peripheral.advertisementData = advertisementData;
+    
     [self.peripherals addObject:peripheral];
     
     if (_delegate && [_delegate respondsToSelector:@selector(ms_centralManager:didDiscoverPeripheral:advertisementData:RSSI:)]) {

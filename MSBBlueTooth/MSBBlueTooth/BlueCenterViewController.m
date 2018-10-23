@@ -60,6 +60,37 @@
 #pragma mark ----------- 发现设备 -------------
 - (void)ms_centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI
 {
+    
+    //获取mac地址数据
+    NSData *data = advertisementData[@"kCBAdvDataManufacturerData"];
+    
+    if (data) {
+        NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length]-2];
+        [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
+            unsigned char *dataBytes = (unsigned char*)bytes;
+            
+            for (NSInteger i = 0; i < byteRange.length; i++) {
+                NSString *hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
+                if ([hexStr length] == 2) {
+                    [string appendString:hexStr];
+                } else {
+                    [string appendFormat:@"0%@", hexStr];
+                }
+            }
+        }];
+        //e97ffac74d44
+        
+        NSLog(@"%@",string);
+        
+        
+        NSRange range = [string rangeOfString:@"e97ffac74d44"];
+        if (range.location != NSNotFound) {
+            //开始连接
+//            [self.blueTooth connectPeripheral:peripheral];
+            NSLog(@"正在连接");
+        }
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -96,6 +127,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    CBPeripheral *peripheral = self.blueTooth.peripherals[indexPath.row];
+    NSDictionary *data = peripheral.advertisementData;
+//    NSArray
     
     if (indexPath.row < self.blueTooth.peripherals.count) {
         //连接设备

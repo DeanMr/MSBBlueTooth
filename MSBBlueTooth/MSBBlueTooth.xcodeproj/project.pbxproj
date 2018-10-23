@@ -25,6 +25,7 @@
 		C9D2C529CCEF72C4D2E53990 /* Pods_MSBBlueTooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42AFD83B07B4CA7FD2E4027 /* Pods_MSBBlueTooth.framework */; };
 		E71124FE21707AE8003CFBAF /* DUFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71124FD21707AE8003CFBAF /* DUFViewController.m */; };
 		E7112507217427E7003CFBAF /* Custom in Resources */ = {isa = PBXBuildFile; fileRef = E7112506217427E7003CFBAF /* Custom */; };
+		E7CA6AE5217F0D7200860FAD /* CBPeripheral+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CA6AE4217F0D7200860FAD /* CBPeripheral+Property.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		E71124FD21707AE8003CFBAF /* DUFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DUFViewController.m; sourceTree = "<group>"; };
 		E7112506217427E7003CFBAF /* Custom */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Custom; sourceTree = "<group>"; };
 		E711250821743331003CFBAF /* MSBBlueTooth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MSBBlueTooth-Bridging-Header.h"; sourceTree = "<group>"; };
+		E7CA6AE3217F0D7200860FAD /* CBPeripheral+Property.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CBPeripheral+Property.h"; sourceTree = "<group>"; };
+		E7CA6AE4217F0D7200860FAD /* CBPeripheral+Property.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CBPeripheral+Property.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,15 +190,10 @@
 		394CE45E21424A33004B3597 /* BlueTooth */ = {
 			isa = PBXGroup;
 			children = (
-				4517E88C214DF4EB0024F1DF /* MSBBlueTooth+Operation.h */,
-				4517E88B214DF4EB0024F1DF /* MSBBlueTooth+Operation.m */,
+				E7CA6AE6217F0FE000860FAD /* MSCategory */,
 				4517E88D214DF4EB0024F1DF /* MSBlueToothProtocol.h */,
-				394CE45F21424A33004B3597 /* MSBBlueTooth.m */,
-				394CE46021424A33004B3597 /* MSBBlueTooth+State.h */,
-				394CE46121424A33004B3597 /* NSString+Coding.m */,
 				394CE46221424A33004B3597 /* MSBBlueTooth.h */,
-				394CE46321424A33004B3597 /* MSBBlueTooth+State.m */,
-				394CE46421424A33004B3597 /* NSString+Coding.h */,
+				394CE45F21424A33004B3597 /* MSBBlueTooth.m */,
 			);
 			path = BlueTooth;
 			sourceTree = "<group>";
@@ -207,6 +205,21 @@
 				3DAC770738C32918EACC9854 /* Pods-MSBBlueTooth.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E7CA6AE6217F0FE000860FAD /* MSCategory */ = {
+			isa = PBXGroup;
+			children = (
+				4517E88C214DF4EB0024F1DF /* MSBBlueTooth+Operation.h */,
+				4517E88B214DF4EB0024F1DF /* MSBBlueTooth+Operation.m */,
+				E7CA6AE3217F0D7200860FAD /* CBPeripheral+Property.h */,
+				E7CA6AE4217F0D7200860FAD /* CBPeripheral+Property.m */,
+				394CE46021424A33004B3597 /* MSBBlueTooth+State.h */,
+				394CE46321424A33004B3597 /* MSBBlueTooth+State.m */,
+				394CE46421424A33004B3597 /* NSString+Coding.h */,
+				394CE46121424A33004B3597 /* NSString+Coding.m */,
+			);
+			path = MSCategory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,6 +414,7 @@
 			files = (
 				394CE45D21424993004B3597 /* BLEViewController.m in Sources */,
 				394CE46621424A33004B3597 /* NSString+Coding.m in Sources */,
+				E7CA6AE5217F0D7200860FAD /* CBPeripheral+Property.m in Sources */,
 				394CE42E214247AC004B3597 /* ViewController.m in Sources */,
 				394CE46521424A33004B3597 /* MSBBlueTooth.m in Sources */,
 				394CE439214247AE004B3597 /* main.m in Sources */,
@@ -583,6 +597,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = T5358WJ3WV;
 				INFOPLIST_FILE = MSBBlueTooth/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -606,6 +621,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = T5358WJ3WV;
 				INFOPLIST_FILE = MSBBlueTooth/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

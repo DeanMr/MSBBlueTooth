@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "MSBlueToothProtocol.h"
+#import "CBPeripheral+Property.h"
 //服务UUID
 #define SERVICE_UUID @"0x0AF0"
 #define WRITE_UUID_1 @"0AF6"
