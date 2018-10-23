@@ -273,6 +273,7 @@
 		394CE41E214247AC004B3597 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = MS;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "卢志卫";
 				TargetAttributes = {

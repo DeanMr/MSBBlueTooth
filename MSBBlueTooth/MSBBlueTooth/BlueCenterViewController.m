@@ -9,6 +9,7 @@
 #import "BlueCenterViewController.h"
 #import "BLEViewController.h"
 #import "MSBBlueTooth.h"
+
 //#import "iOSDFULibrary-Swift.h"
 
 @interface BlueCenterViewController ()<MSBlueToothProtocol>
@@ -35,11 +36,17 @@
     
 }
 
+
+
+
 - (IBAction)scan:(id)sender {
     
     //扫描并回调发现的每一台设备
     
     [self.blueTooth scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:SERVICE_UUID]]];
+    
+    
+  
     
 }
 

@@ -35,5 +35,22 @@
  */
 - (void)ms_centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral;
 
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(NSData *)data;
+
+/**
+ 断开链接
+
+ @param central 中央设备
+ @param peripheral 外围设备（被断开的）
+ @param error 报错信息
+ */
+- (void)ms_centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error;
+
+
+/**
+ 接收到数据回调
+
+ @param peripheral 发送数据的外围设备
+ @param data 数据
+ */
+- (void)ms_peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(NSData *)data;
 @end

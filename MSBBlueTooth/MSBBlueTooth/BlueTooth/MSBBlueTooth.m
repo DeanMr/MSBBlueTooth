@@ -93,19 +93,6 @@
     [_centerManager connectPeripheral:_discoveredPeripheral options:@{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES}];
 }
 
-//#pragma mark -- 向连接的外围设备写入数据
-//- (void)writeData
-//{
-//    static NSInteger msg = 0;
-//    msg++;
-//
-//    NSString *msgStr = [NSString stringWithFormat:@"%ld",msg];
-//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:msgStr,@"msg",@"ack",@"type", nil];
-//    // 用NSData类型来写入
-//    NSData *data = [[NSString convertToJSONData:dic] dataUsingEncoding:NSUTF8StringEncoding];
-//    // 根据上面的特征self.characteristic来写入数据
-//    [self.discoveredPeripheral writeValue:data forCharacteristic:self.characteristic1 type:CBCharacteristicWriteWithResponse];
-//}
 
 #pragma mark -- CBCentralManagerDelegate   coreBlueTooth实现检测蓝牙状态并通过代理返回结果
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
@@ -256,14 +243,6 @@
         
     }
     
-    // 这里只获取一个特征，写入数据的时候需要用到这个特征
-//    self.characteristic1 = service.characteristics.lastObject;
-//
-//    // 直接读取这个特征数据，会调用didUpdateValueForCharacteristic
-//    [peripheral readValueForCharacteristic:self.characteristic1];
-//
-//    // 订阅通知
-//    [self.discoveredPeripheral setNotifyValue:YES forCharacteristic:self.characteristic1];
 }
 
 
@@ -306,17 +285,10 @@
 //    }];
     
     
-    if (_delegate && [_delegate respondsToSelector:@selector(peripheral:didUpdateValueForCharacteristic:)]) {
-        [_delegate peripheral:peripheral didUpdateValueForCharacteristic:data];
+    if (_delegate && [_delegate respondsToSelector:@selector(ms_peripheral:didUpdateValueForCharacteristic:)]) {
+        [_delegate ms_peripheral:peripheral didUpdateValueForCharacteristic:data];
     }
-    
-//    NSString *value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//
-//    if (value) {
-//        NSLog(@"接收到数据：%@ characteristic：%@",value , characteristic.UUID);
-////        [self writeData];
-//    }
-    
+
 }
 
 #pragma mark -- 写入数据回调

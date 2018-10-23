@@ -58,7 +58,7 @@
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(NSData *)data
+- (void)ms_peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(NSData *)data
 {
     NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length]];
     //data转16进制
